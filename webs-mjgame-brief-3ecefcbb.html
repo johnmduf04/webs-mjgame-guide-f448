@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麻将胡了 · 资料索引与信息整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce9d8 0%, #f8d5b0 40%, #f3c49b 100%);
+            min-height: 100vh;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #2c241b;
+        }
+        .page-container {
+            max-width: 1080px;
+            width: 100%;
+        }
+
+        /* 卡片 */
+        .card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(6px);
+            border-radius: 32px;
+            padding: 2.2rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 12px 32px rgba(140, 80, 30, 0.12), 0 2px 8px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(255, 235, 210, 0.5);
+            transition: box-shadow 0.2s ease;
+        }
+        .card:hover {
+            box-shadow: 0 16px 40px rgba(160, 90, 40, 0.14);
+        }
+
+        /* hero */
+        .hero {
+            text-align: center;
+            padding: 3rem 1.8rem 2.5rem;
+            background: rgba(255, 248, 240, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid #ffe9d2;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #5e3a22;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #8b5a34, #b87c4c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero .sub {
+            font-size: 1.2rem;
+            color: #7a5f45;
+            background: #f2e0cd;
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 400;
+            margin-top: 0.3rem;
+            letter-spacing: 0.02em;
+        }
+        .hero p {
+            max-width: 720px;
+            margin: 1.2rem auto 0.2rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #3d322b;
+        }
+
+        /* 标题 */
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #4a3324;
+            border-left: 6px solid #ca9e74;
+            padding-left: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-sub {
+            font-size: 0.95rem;
+            color: #6f5842;
+            margin-top: -0.4rem;
+            margin-bottom: 1.4rem;
+        }
+
+        /* 优势网格 */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+        }
+        .feature-item {
+            background: #faf3eb;
+            padding: 1.4rem 1rem;
+            border-radius: 24px;
+            transition: background 0.15s;
+            border: 1px solid #e7d5c0;
+        }
+        .feature-item h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #5a3d28;
+            margin-bottom: 0.4rem;
+        }
+        .feature-item p {
+            font-size: 0.9rem;
+            color: #574b40;
+            line-height: 1.5;
+        }
+
+        /* 说明区 + FAQ */
+        .two-col {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .col {
+            flex: 1 1 280px;
+        }
+        .faq-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #ddcdbb;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-q {
+            font-weight: 500;
+            color: #3f2f20;
+            font-size: 1rem;
+        }
+        .faq-a {
+            font-size: 0.9rem;
+            color: #5b4c3d;
+            margin-top: 0.2rem;
+            line-height: 1.5;
+        }
+        .link-sentence {
+            background: #f6ebe0;
+            padding: 1.2rem 1.6rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-size: 1rem;
+            border: 1px solid #ecdac8;
+        }
+        .link-sentence a {
+            color: #8b5a34;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 2px solid #caa483;
+            padding-bottom: 0.1rem;
+        }
+        .link-sentence a:hover {
+            background: #f0dac6;
+            border-bottom-color: #a16e44;
+        }
+
+        /* 底部 */
+        .footer-note {
+            text-align: center;
+            padding: 2rem 0.5rem 1rem;
+            font-size: 0.85rem;
+            color: #7c6a5a;
+            border-top: 1px solid #e5d3c0;
+            margin-top: 0.8rem;
+        }
+        .footer-note a {
+            color: #7a5b3e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .card {
+                padding: 1.6rem 1.2rem;
+                border-radius: 24px;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .grid-3 {
+                gap: 0.8rem;
+            }
+            .hero {
+                padding: 1.8rem 1rem;
+            }
+            .link-sentence {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- hero -->
+        <div class="card hero">
+            <h1>麻将胡了</h1>
+            <span class="sub">资料索引 · 信息整理</span>
+            <p>围绕「麻将胡了」主题，汇总规则背景、常见疑问及有效资源路径。本页以信息归档方式呈现，便于快速检索与参考。</p>
+        </div>
+
+        <!-- 优势区：信息价值点 -->
+        <div class="card">
+            <div class="section-title">整理维度</div>
+            <div class="grid-3">
+                <div class="feature-item">
+                    <h3>规则速览</h3>
+                    <p>聚合主流胡牌牌型、番种说明及基础分计算方式，降低入门门槛。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>术语索引</h3>
+                    <p>从听牌、自摸到番型，统一解释口径，方便对照查阅。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>场景参考</h3>
+                    <p>线下对战、线上对局的不同侧重，及常见问题分类记录。</p>
+                </div>
+            </div>
+            <div style="margin-top: 1.2rem; font-size: 0.9rem; color: #6d5a48;">
+                * 所有内容仅作资料整理，不涉及具体玩法指导或策略推荐。
+            </div>
+        </div>
+
+        <!-- 说明区 + FAQ摘要 -->
+        <div class="card">
+            <div class="two-col">
+                <div class="col">
+                    <div class="section-title" style="border-left-color: #be8d64;">说明与定位</div>
+                    <p style="margin-bottom: 0.8rem; line-height: 1.6;">
+                        本页定位为轻量索引，收录与「麻将胡了」相关的通用信息片段。内容源自公开资料整理，不包含任何违规或诱导性描述。如需了解更完整的机制或参与交流，可参考外部公开站点。
+                    </p>
+                    <p style="line-height: 1.6;">
+                        在资料整理过程中，我们注意到许多爱好者希望获得结构化的信息入口。基于此，将常用概念与常见疑问集中呈现，帮助减少检索成本。
+                    </p>
+                </div>
+                <div class="col">
+                    <div class="section-title" style="border-left-color: #be8d64; margin-bottom: 0.6rem;">FAQ 摘要</div>
+                    <div class="faq-item">
+                        <div class="faq-q">“胡牌”的基本条件是什么？</div>
+                        <div class="faq-a">通常需满足特定牌型组合（如顺子、刻子、将牌），不同规则下番型要求略有差异。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">是否有统一的番种表？</div>
+                        <div class="faq-a">不同地区/平台番种表不尽相同，建议查阅对应规则说明。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">如何找到更系统的资料？</div>
+                        <div class="faq-a">可通过公开社区或规则文档进一步检索，本站不提供外部链接之外的资源。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 嵌入链接的自然句子 -->
+        <div class="card" style="text-align: center; padding: 1.8rem;">
+            <div class="link-sentence">
+                如需浏览「麻将胡了」相关主题的更多内容，可直接前往 
+                <a href="https://webs-mjgame.com">麻将胡了</a> 
+                站点查阅。
+            </div>
+            <div style="margin-top: 1rem; font-size: 0.85rem; color: #7c6856;">
+                注：链接指向外部页面，内容性质请自行判断。
+            </div>
+        </div>
+
+        <!-- 底部 -->
+        <div class="footer-note">
+            <span>资料整理页面 · 信息仅供参考</span><br>
+            <span style="opacity: 0.7;">索引由公开内容汇编 · 无任何诱导表述</span>
+        </div>
+    </div>
+</body>
+</html>
